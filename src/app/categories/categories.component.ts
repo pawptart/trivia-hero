@@ -12,6 +12,7 @@ export class CategoriesComponent implements OnInit {
   constructor(public categoriesService: CategoriesService) { }
 
   triviaCategories: ICategory;
+  categoryNotSelected: Boolean = true;
 
   ngOnInit() {
     this.showCategories();
@@ -24,6 +25,14 @@ export class CategoriesComponent implements OnInit {
           trivia_categories: data.trivia_categories
         };
       });
+  }
+
+  selectCategory(category: String) {
+    this.categoryNotSelected = false;
+  }
+
+  goBack() {
+    this.categoryNotSelected = !this.categoryNotSelected;
   }
 
 }

@@ -1,5 +1,24 @@
-<ul class="categories">
+<ul class="sorted-categories" *ngIf="categoryNotSelected">
+  <li (click)="selectCategory('general')">
+    General Knowledge
+  </li>
+  <li (click)="selectCategory('entertainment')">
+    Entertainment
+  </li>
+  <li (click)="selectCategory('science')">
+    Science
+  </li>
+  <li (click)="selectCategory('other')">
+    Other
+  </li>
+</ul>
+
+
+<ul class="categories" *ngIf="!categoryNotSelected">
   <li *ngFor="let category of triviaCategories?.trivia_categories">
     <span>{{ category.id }}</span>: {{ category.name }}
+  </li>
+  <li (click)="goBack()">
+    Go back
   </li>
 </ul>
