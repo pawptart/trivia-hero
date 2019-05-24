@@ -61,4 +61,8 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
+  viewCategory(id: Number) {
+    // todo: Hook this up. Import RouterLink??
+  }
+
 }
