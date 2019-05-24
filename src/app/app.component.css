@@ -1,3 +1,24 @@
-h1 {
-	text-align: center;
+.header-container {
+	padding: 5px;
+	margin: 0;
+	background-color: #262626;
+}
+
+.header-logo {
+	display: flex;
+}
+
+.logo-text {
+	color: white;
+	margin-left: 20px;
+}
+
+.logo-text-blue {
+	color: #1D76BB;
+}
+
+.logo-img {
+	padding-left: 5px;
+	width: auto;
+	height: 100px;
 }
