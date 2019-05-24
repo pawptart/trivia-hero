@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   triviaCategories: ICategory;
   categoryNotSelected: Boolean = true;
   categoryClass: String;
+  sortedCategories: Array<Object>;
 
   ngOnInit() {
     this.showCategories();
@@ -28,13 +29,36 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-  selectCategory(categoryClass: String) {
+  selectCategory(categoryClass) {
     this.categoryNotSelected = false;
     this.categoryClass = categoryClass;
+    this.sortCategories(categoryClass);
   }
 
   goBack() {
     this.categoryNotSelected = !this.categoryNotSelected;
+  }
+
+  sortCategories(categoryClass) {
+    this.sortedCategories = [];
+
+    var categoryRegex = new RegExp(categoryClass, 'i');
+
+    if (categoryClass && categoryClass !== 'other') {
+      for (let category of this.triviaCategories.trivia_categories) {
+        if (category.name.match(categoryRegex)) {
+          this.sortedCategories.push(category);
+        }
+      }
+    } else if (categoryClass === 'other') {
+      for (let category of this.triviaCategories.trivia_categories) {
+        if (!category.name.match(':') && category.name !== 'General Knowledge' && !category.name.match('Science')) {
+          this.sortedCategories.push(category);
+        }
+      }
+    } else {
+      console.log('There was an error retrieving trivia categories.')
+    }
   }
 
 }

@@ -15,7 +15,7 @@
 
 
 <ul class="selected-categories" *ngIf="!categoryNotSelected">
-  <li class="{{ categoryClass }}" *ngFor="let category of triviaCategories?.trivia_categories">
+  <li class="{{ categoryClass }}" *ngFor="let category of sortedCategories">
     <span class="box-content">{{ category.name }}</span>
   </li>
   <li (click)="goBack()" class="back">
