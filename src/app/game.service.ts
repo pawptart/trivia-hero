@@ -8,24 +8,25 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  questionUrl = "https://opentdb.com/api.php?amount=";
+  
   getQuestions(number: number = 10, category: number = null, difficulty: string = null, type: string = null) {
-    
-    this.questionUrl += number;
+    let questionUrl = "https://opentdb.com/api.php?amount=";
+
+    questionUrl += number;
 
     if (category) {
-      this.questionUrl += `&category=${category}`;
+      questionUrl += `&category=${category}`;
     }
 
     if (difficulty) {
-      this.questionUrl += `&difficulty=${difficulty}`;
+      questionUrl += `&difficulty=${difficulty}`;
     }
 
-    if (type) {
-      this.questionUrl += `&type=${type}`;
+    if (type && type !== 'any') {
+      questionUrl += `&type=${type}`;
     }
 
-    return this.http.get(this.questionUrl);
+    return this.http.get(questionUrl);
 
   }
 }

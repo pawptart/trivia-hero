@@ -10,19 +10,31 @@
     <div class="radio-container" id="radio-container">
       <div class="options-label">Question Type:</div>
       <label class="container">Any
-        <input type="radio" name="type" value="any" checked>
+        <input type="radio" name="type" value="any" class="radio" checked>
         <span class="checkmark"></span>
       </label>
       <label class="container">Multiple Choice
-        <input type="radio" name="type" value="multiple">
+        <input type="radio" name="type" value="multiple" class="radio">
         <span class="checkmark"></span>
       </label>
       <label class="container">True/False
-        <input type="radio" name="type" value="boolean">
+        <input type="radio" name="type" value="boolean" class="radio">
         <span class="checkmark"></span>
       </label>
     </div>
     <br />
-    <input type="submit" class="submit" value="Start!">
+    <input type="submit" class="submit" value="Start!" (click)="startGame()">
+  </div>
+</div>
+
+<div class="question-container" *ngFor="let question of questionList?.results">
+  <h3 class="question">{{question.question}}</h3>
+  <div class="answer-choices-container">
+    <div class="answer">
+      {{question.correct_answer}}
+    </div>
+    <div class="answer" *ngFor="let answer of question.incorrect_answers">
+      {{answer}}
+    </div>
   </div>
 </div>
