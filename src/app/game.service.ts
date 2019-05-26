@@ -19,13 +19,13 @@ export class GameService {
     }
 
     if (difficulty) {
-      questionUrl += `&difficulty=${difficulty}`;
+      questionUrl += `&difficulty=${difficulty.toLowerCase()}`;
     }
 
     if (type && type !== 'any') {
       questionUrl += `&type=${type}`;
     }
-
+    
     return this.http.get(questionUrl);
 
   }
