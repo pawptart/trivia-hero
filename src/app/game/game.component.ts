@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
     var amountSlider = document.getElementById("amount-slider");
     var difficultySlider = document.getElementById("difficulty-slider");
     var amountQuestions = document.getElementById("amount-questions");
-    var amountQuestions = document.getElementById("difficulty-setting");
+    var difficultySetting = document.getElementById("difficulty-setting");
 
     amountSlider.oninput = function() {
       amountQuestions.innerHTML = this.value;
@@ -33,8 +33,7 @@ export class GameComponent implements OnInit {
         "No Mercy"
       ]
 
-      amountQuestions.innerHTML = difficultySettings[this.value];
-
+      difficultySetting.innerHTML = difficultySettings[Math.floor(this.value / 10)];
     }
   }
 
