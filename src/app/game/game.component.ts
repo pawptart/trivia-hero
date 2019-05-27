@@ -18,6 +18,8 @@ export class GameComponent implements OnInit {
   difficulty: string;
   questionList: QuestionList;
   currentQuestion: Object;
+  currentQuestionIndex: number;
+  lockAnswers: boolean;
 
   constructor(
     public gameService: GameService,
@@ -47,6 +49,52 @@ export class GameComponent implements OnInit {
 
         this.questionList = this.gameService.randomizePossibleAnswers(this.questionList);
         this.currentQuestion = this.questionList.results[0];
+        this.currentQuestionIndex = 0;
       });
+  }
+
+  checkAnswer(index) {
+    
+    if (!this.lockAnswers) {
+      var answerButtons = document.getElementsByTagName("li");
+      
+      for (let i = 0; i < this.currentQuestion.possible_answers.length; i++) {
+        if (this.currentQuestion.possible_answers[i] == this.currentQuestion.correct_answer) {
+          var correctIndex = i;
+          break;
+        }
+      }
+
+      if (this.currentQuestion.possible_answers[index] != this.currentQuestion.correct_answer) {
+        answerButtons[index].className = "answer incorrect";
+        answerButtons[correctIndex].className = "answer correct";
+      } else {      
+        answerButtons[correctIndex].className = "answer correct";
+      }      
+
+      setTimeout(() => this.nextQuestion(), 2000);
+    }
+
+    this.lockAnswers = true;
+  }
+
+  nextQuestion() {
+
+    // Fixes bug where answers stayed highlighted if True/False back to back.
+    var answerButtons = document.getElementsByTagName("li");
+    for (let i = 0; i < answerButtons.length; i++) {
+      answerButtons[i].className = "answer";
+    }
+
+    this.currentQuestionIndex++;
+    if (this.currentQuestionIndex == this.questionList.results.length) {
+      this.endGame();
+    }
+    this.currentQuestion = this.questionList.results[this.currentQuestionIndex];
+    this.lockAnswers = false;
+  }
+
+  endGame() {
+    console.log("the game is over!");
   }
 }
