@@ -1,13 +1,13 @@
 <div class="header-container">
 	<div class="header-logo">
-		<h1 class="logo-text">trivia<span class="text-blue">hero</span></h1>
-		<img src="../assets/images/logo.png" class="logo-img"/>
+		<a routerLink="/home" class="header-logo">
+			<h1 class="logo-text">trivia<span class="text-blue">hero</span></h1>			
+			<img src="../assets/images/logo.png" class="logo-img"/>
+		</a>
 	</div>
 </div>
 
-<app-about></app-about>
-<app-categories></app-categories>
-<app-game></app-game>
+<router-outlet></router-outlet>
 
 <div class="footer-container">
 	<div class="copyright">&copy; Tyler Porter <span class="text-blue">2019</span></div>
@@ -16,7 +16,7 @@
 			<a href="#">About</a>
 		</li>
 		<li class="github">
-				<a href="#">github</a>
+				<a href="https://github.com/pawptart/trivia-hero">github</a>
 		</li>
 		<li class="contact">
 				<a href="#">Contact</a>

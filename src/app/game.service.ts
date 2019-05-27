@@ -8,7 +8,6 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  
   getQuestions(number: number = 10, category: number = null, difficulty: string = null, type: string = null) {
     let questionUrl = "https://opentdb.com/api.php?amount=";
 
@@ -25,7 +24,7 @@ export class GameService {
     if (type && type !== 'any') {
       questionUrl += `&type=${type}`;
     }
-    
+
     return this.http.get(questionUrl);
 
   }

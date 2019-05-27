@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutService } from '../about.service';
+import { CategoriesComponent } from '../categories/categories.component';
 
 @Component({
   selector: 'app-about',

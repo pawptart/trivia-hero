@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { QuestionList } from '../question';
 
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -9,7 +12,11 @@ import { QuestionList } from '../question';
 })
 export class GameComponent implements OnInit {
 
-  constructor(public gameService: GameService) { }
+  constructor(
+    public gameService: GameService,
+    private location: Location,
+    private route: ActivatedRoute
+  ) { }
 
   questionList: QuestionList;
   possibleAnswers: Array<string>;
@@ -40,6 +47,7 @@ export class GameComponent implements OnInit {
   }
 
   startGame() {
+    this.showMenu = false;
     var amountSlider = document.getElementById("amount-slider");
     var difficultySlider = document.getElementById("difficulty-slider");
     var radioList = document.getElementsByClassName("radio");
@@ -57,9 +65,10 @@ export class GameComponent implements OnInit {
     }
 
     const amount = amountSlider.value;
+    const categoryId = +this.route.snapshot.paramMap.get('id');
     const difficulty = difficultySettings[Math.floor(difficultySlider.value / 20)];
 
-    this.gameService.getQuestions(amount, null, difficulty, type)
+    this.gameService.getQuestions(amount, categoryId, difficulty, type)
       .subscribe( (data: QuestionList) => {
         this.questionList = { 
           response_code: data.response_code,
