@@ -7,6 +7,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AboutComponent } from './about/about.component';
 import { GameComponent } from './game/game.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
     CategoriesComponent,
     AboutComponent,
     GameComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
