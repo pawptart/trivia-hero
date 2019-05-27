@@ -1,6 +1,10 @@
-<div class="question-container" *ngFor="let question of questionList?.results">
-  <h3 class="question" [innerHTML]="question.question"></h3>
-  <div class="answer-choices-container">
-    <div class="answer" *ngFor="let answer of question.possible_answers" [innerHTML]="answer"></div>
+<div *ngIf="currentQuestion">
+  <div class="question-container">
+    <h3 class="question" [innerHTML]="currentQuestion.question"></h3>
+    <ul class="answer-choices-container">
+      <li class="answer" *ngFor="let answer of currentQuestion.possible_answers">
+          <span class="box-content">{{ answer }}</span>
+      </li>
+    </ul>
   </div>
 </div>

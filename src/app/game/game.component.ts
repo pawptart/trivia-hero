@@ -17,6 +17,7 @@ export class GameComponent implements OnInit {
   amount: number;
   difficulty: string;
   questionList: QuestionList;
+  currentQuestion: Object;
 
   constructor(
     public gameService: GameService,
@@ -45,6 +46,7 @@ export class GameComponent implements OnInit {
         };
 
         this.questionList = this.gameService.randomizePossibleAnswers(this.questionList);
+        this.currentQuestion = this.questionList.results[0];
       });
   }
 }
