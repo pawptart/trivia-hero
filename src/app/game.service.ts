@@ -33,59 +33,29 @@ export class GameService {
 
   }
 
-  startGame() {
-    var amountSlider = document.getElementById("amount-slider");
-    var difficultySlider = document.getElementById("difficulty-slider");
-    var radioList = document.getElementsByClassName("radio");
-
-    const difficultySettings = [
-      "Easy",
-      "Medium",
-      "Hard"
-    ];
-
-    for (let i = 0; i < radioList.length; i++) {
-      if (radioList[i].checked) {
-        var type = radioList[i].defaultValue;
-      }
-    }
-
-    const amount = amountSlider.value;
-    const categoryId = +this.route.snapshot.paramMap.get('id');
-    const difficulty = difficultySettings[Math.floor(difficultySlider.value / 20)];
-
-    this.gameService.getQuestions(amount, categoryId, difficulty, type)
-      .subscribe( (data: QuestionList) => {
-        this.questionList = { 
-          response_code: data.response_code,
-          results: data.results
-        };
-
-        this.randomizePossibleAnswers();
-      });
+  startGame(amount, categoryId, difficulty, type) {
+    return this.getQuestions(amount, categoryId, difficulty, type);      
   }
   
-  randomizePossibleAnswers() {
-    if (this.questionList) {
-      for (let i = 0; i < this.questionList.results.length; i++) {
+  randomizePossibleAnswers(questionList) {
+    for (let i = 0; i < questionList.results.length; i++) {
 
-        // Create an array of possible answers
-        var possibleAnswers = []
-        possibleAnswers.push(this.questionList.results[i].correct_answer);
-        possibleAnswers.push(...this.questionList.results[i].incorrect_answers);
+      // Create an array of possible answers
+      var possibleAnswers = []
+      possibleAnswers.push(questionList.results[i].correct_answer);
+      possibleAnswers.push(...questionList.results[i].incorrect_answers);
 
-        // Shuffle the array of possible answers
-        for (let i = possibleAnswers.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [possibleAnswers[i], possibleAnswers[j]] = [possibleAnswers[j], possibleAnswers[i]];  
-        }
-
-        // Put it in the questionList object
-        this.questionList.results[i].possible_answers = possibleAnswers;
+      // Shuffle the array of possible answers
+      for (let i = possibleAnswers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [possibleAnswers[i], possibleAnswers[j]] = [possibleAnswers[j], possibleAnswers[i]];  
       }
-    } else {  
-      console.log("Oops! There was an error. Please retry.");
+
+      // Put it in the questionList object
+      questionList.results[i].possible_answers = possibleAnswers;
     }
+    
+    return questionList
   }
 
 }

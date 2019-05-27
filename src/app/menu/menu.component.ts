@@ -3,6 +3,7 @@ import { GameService } from '../game.service';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,17 +12,21 @@ import { Location } from '@angular/common';
 })
 export class MenuComponent implements OnInit {
 
-  gameId: number;
+  categoryId: number;
+  type: string;
+  amount: number;
+  difficulty: string;
 
   constructor(
     public gameService: GameService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.displaySliderValues();
-    this.gameId = +this.route.snapshot.paramMap.get('id');
+    this.categoryId = +this.route.snapshot.paramMap.get('id');
   }
 
   displaySliderValues() {
@@ -45,6 +50,28 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  startGame = () => this.gameService.startGame();
+  submitValues() {
+    var amountSlider = document.getElementById("amount-slider");
+    var difficultySlider = document.getElementById("difficulty-slider");
+    var radioList = document.getElementsByClassName("radio");
+
+    const difficultySettings = [
+      "Easy",
+      "Medium",
+      "Hard"
+    ];
+
+    for (let i = 0; i < radioList.length; i++) {
+      if (radioList[i].checked) {
+        var type = radioList[i].defaultValue;
+      }
+    }
+
+    this.amount = amountSlider.value;
+    this.difficulty = difficultySettings[Math.floor(difficultySlider.value / 20)].toLowerCase();
+    this.type = type;
+
+    this.router.navigate(['/game', this.categoryId, this.amount, this.difficulty, this.type]);
+  }
 
 }
