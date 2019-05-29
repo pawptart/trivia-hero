@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
   amount: number;
   difficulty: string;
   questionList: QuestionList;
-  currentQuestion: Object;
+  currentQuestion: any;
   currentQuestionIndex: number;
   lockAnswers: boolean;
 
@@ -39,7 +39,7 @@ export class GameComponent implements OnInit {
     this.type = this.route.snapshot.paramMap.get('type');
   }
 
-  startGame(amount, categoryId, difficulty, type) {
+  public startGame(amount: number, categoryId: number, difficulty: string, type: string) {
     this.gameService.startGame(amount, categoryId, difficulty, type)
       .subscribe( (data: QuestionList) => {
         this.questionList = { 
@@ -54,23 +54,18 @@ export class GameComponent implements OnInit {
   }
 
   checkAnswer(index) {
-    
-    if (!this.lockAnswers) {
-      var answerButtons = document.getElementsByTagName("li");
-      
-      for (let i = 0; i < this.currentQuestion.possible_answers.length; i++) {
-        if (this.currentQuestion.possible_answers[i] == this.currentQuestion.correct_answer) {
-          var correctIndex = i;
-          break;
-        }
-      }
 
-      if (this.currentQuestion.possible_answers[index] != this.currentQuestion.correct_answer) {
-        answerButtons[index].className = "answer incorrect";
-        answerButtons[correctIndex].className = "answer correct";
-      } else {      
-        answerButtons[correctIndex].className = "answer correct";
-      }      
+    if (!this.lockAnswers) {
+      let correctIndex: number = 
+        this.currentQuestion.possible_answers.findIndex((answer: any) => 
+          answer.answer === this.currentQuestion.correct_answer);
+
+      if (this.currentQuestion.possible_answers[index].answer !== this.currentQuestion.correct_answer) {
+        this.currentQuestion.possible_answers[index].state = false;
+      }
+      
+      this.currentQuestion.possible_answers[correctIndex].state = true;
+            
 
       setTimeout(() => this.nextQuestion(), 2000);
     }

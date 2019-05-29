@@ -12,7 +12,7 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestions(number: number = 10, category: number = null, difficulty: string = null, type: string = null) {
+  public getQuestions(number: number = 10, category: number = null, difficulty: string = null, type: string = null) {
     let questionUrl = "https://opentdb.com/api.php?amount=";
 
     questionUrl += number;
@@ -34,27 +34,36 @@ export class GameService {
   }
 
   startGame(amount, categoryId, difficulty, type) {
-    return this.getQuestions(amount, categoryId, difficulty, type);      
+    return this.getQuestions(amount, categoryId, difficulty, type);
   }
-  
+
   randomizePossibleAnswers(questionList) {
     for (let i = 0; i < questionList.results.length; i++) {
 
       // Create an array of possible answers
-      var possibleAnswers = []
-      possibleAnswers.push(questionList.results[i].correct_answer);
-      possibleAnswers.push(...questionList.results[i].incorrect_answers);
+      let possibleAnswers = []
+      possibleAnswers.push({
+        answer: questionList.results[i].correct_answer,
+        state: "neutral"
+      });
+      possibleAnswers.push(...questionList.results[i].incorrect_answers.map((answer: string) => {
+        return {
+          answer: answer,
+          state: "neutral"
+        };
+
+      }));
 
       // Shuffle the array of possible answers
       for (let i = possibleAnswers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [possibleAnswers[i], possibleAnswers[j]] = [possibleAnswers[j], possibleAnswers[i]];  
+        [possibleAnswers[i], possibleAnswers[j]] = [possibleAnswers[j], possibleAnswers[i]];
       }
 
       // Put it in the questionList object
       questionList.results[i].possible_answers = possibleAnswers;
     }
-    
+
     return questionList
   }
 

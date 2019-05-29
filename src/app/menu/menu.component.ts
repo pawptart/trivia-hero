@@ -30,17 +30,17 @@ export class MenuComponent implements OnInit {
   }
 
   displaySliderValues() {
-    var amountSlider = document.getElementById("amount-slider");
-    var difficultySlider = document.getElementById("difficulty-slider");
-    var amountQuestions = document.getElementById("amount-questions");
-    var difficultySetting = document.getElementById("difficulty-setting");
+    let amountSlider: any = document.getElementById("amount-slider");
+    let difficultySlider: any = document.getElementById("difficulty-slider");
+    let amountQuestions: any = document.getElementById("amount-questions");
+    let difficultySetting: any = document.getElementById("difficulty-setting");
 
     amountSlider.oninput = function() {
       amountQuestions.innerHTML = this.value;
     }
     
     difficultySlider.oninput = function() {
-      var difficultySettings = [
+      let difficultySettings = [
         "Easy",
         "Medium",
         "Hard"
@@ -51,9 +51,9 @@ export class MenuComponent implements OnInit {
   }
 
   submitValues() {
-    var amountSlider = document.getElementById("amount-slider");
-    var difficultySlider = document.getElementById("difficulty-slider");
-    var radioList = document.getElementsByClassName("radio");
+    let amountSlider: any = document.getElementById("amount-slider");
+    let difficultySlider: any = document.getElementById("difficulty-slider");
+    let radioList: any = document.getElementsByClassName("radio");
 
     const difficultySettings = [
       "Easy",
@@ -61,9 +61,10 @@ export class MenuComponent implements OnInit {
       "Hard"
     ];
 
+    let type: string;
     for (let i = 0; i < radioList.length; i++) {
       if (radioList[i].checked) {
-        var type = radioList[i].defaultValue;
+        type = radioList[i].defaultValue;
       }
     }
 

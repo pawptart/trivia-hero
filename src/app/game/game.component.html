@@ -2,8 +2,8 @@
   <div class="question-container">
     <h3 class="question" [innerHTML]="currentQuestion.question"></h3>
     <ul class="answer-choices-container">
-      <li class="answer" *ngFor="let answer of currentQuestion.possible_answers; let i=index" (click)="checkAnswer(i)">
-          <span class="box-content">{{ answer }}</span>
+      <li class="answer" [class.correct]="answer.state === true" [class.incorrect]="answer.state === false" *ngFor="let answer of currentQuestion.possible_answers; let i=index" (click)="checkAnswer(i)">
+          <span class="box-content">{{ answer.answer }}</span>
       </li>
     </ul>
   </div>

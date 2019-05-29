@@ -14,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   triviaCategories: ICategory;
   categoryNotSelected: Boolean = true;
   categoryClass: String;
-  sortedCategories: Array<Object>;
+  sortedCategories: Array<any>;
 
   ngOnInit() {
     this.showCategories();
@@ -45,13 +45,15 @@ export class CategoriesComponent implements OnInit {
     var categoryRegex = new RegExp(categoryClass, 'i');
 
     if (categoryClass && categoryClass !== 'other') {
-      for (let category of this.triviaCategories.trivia_categories) {
+      let category: any;
+      for (category of this.triviaCategories.trivia_categories) {
         if (category.name.match(categoryRegex)) {
           this.sortedCategories.push(category);
         }
       }
     } else if (categoryClass === 'other') {
-      for (let category of this.triviaCategories.trivia_categories) {
+      let category: any;
+      for (category of this.triviaCategories.trivia_categories) {
         if (!category.name.match(':') && category.name !== 'General Knowledge' && !category.name.match('Science')) {
           this.sortedCategories.push(category);
         }
@@ -59,10 +61,6 @@ export class CategoriesComponent implements OnInit {
     } else {
       console.log('There was an error retrieving trivia categories.')
     }
-  }
-
-  viewCategory(id: Number) {
-    // todo: Hook this up. Import RouterLink??
   }
 
 }
