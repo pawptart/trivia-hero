@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
+import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -25,7 +26,8 @@ export class GameComponent implements OnInit {
   constructor(
     public gameService: GameService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -87,14 +89,14 @@ export class GameComponent implements OnInit {
 
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex == this.questionList.results.length) {
-      this.endGame();
+      this.endGame(this.gameScore, this.questionList.results.length);
     } else {
       this.currentQuestion = this.questionList.results[this.currentQuestionIndex];
       this.lockAnswers = false;
     }
   }
 
-  endGame() {
-    console.log("the game is over!", this.gameScore);
+  endGame(score: number, questions: number) {
+    this.router.navigateByUrl(`/scoreboard/${score}/${questions}`);
   }
 }

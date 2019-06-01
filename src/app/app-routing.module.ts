@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'menu/:id', component: MenuComponent },
   { path: 'game/:id/:amount/:difficulty/:type', component: GameComponent },
   { path: 'home', component: AboutComponent },
-  { path: 'scoreboard', component: ScoreboardComponent }
+  { path: 'scoreboard/:score/:questions', component: ScoreboardComponent }
 ];
 
 @NgModule({

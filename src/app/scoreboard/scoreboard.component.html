@@ -1,15 +1,15 @@
 <div class="score-container">
   <div class="score-text">
     <h2 class="banner">You're a</h2>
-    <h1>trivia<span class="blue-text">hero</span>!</h1>    
+    <h1>trivia<span class="blue-text" *ngIf="gameScore != 0">hero</span><span class="blue-text" *ngIf="gameScore == 0">zero</span>!</h1>    
   </div>
   <div class="score-percentage">
     <div class="score-percentage-hover">
-      <span class="blue-text score">100%</span>
+      <span class="blue-text score">{{scorePercentage}}%</span>
     </div>
   </div>
   <div class="score-total">
-    10/10 questions answered correctly
+    {{gameScore}}/{{questionAmount}} question<span *ngIf="questionAmount != 1">s</span> answered correctly
   </div>
   <div class="go-back">
     <a routerLink="/home">
