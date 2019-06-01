@@ -1,0 +1,96 @@
+.score-container {
+	text-align: center;
+}
+
+.score-text {	
+	background-color: rgba(0,0,0,0.75);
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.5);
+	padding: 10px;
+	width: 75%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+	color: white;
+	text-shadow: 0 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.score-text h1, .score-text h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.blue-text {
+	color: #1D76BB;
+}
+
+.score-percentage {
+	font-size: 150px;
+	width: 75%;
+	margin: auto;
+	font-weight: bold;	
+	text-shadow: 5px 5px #000;
+	animation: twist;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-direction: alternate;
+}
+
+.score-percentage-hover {
+	animation: hover;
+	animation-direction: alternate;	
+	animation-timing-function: ease-in-out;
+	animation-duration: 1.66s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes twist {
+	from {transform: rotate(5deg);}
+	to {transform: rotate(-5deg);}
+}
+
+@keyframes hover {
+	from {transform: translateY(10px);}
+	to {transform: translateY(-10px);}
+}
+
+.score-total {
+	font-weight: bold;
+}
+
+.go-back {
+	justify-self: stretch;
+	padding-top: 6.75%;
+	position: relative;
+	border-radius: 5px;
+	list-style-type: none;
+	margin: 40px auto 20px auto;
+	text-align: center;
+	font-size: 1.2em;
+	width: 25%;
+
+	-webkit-box-shadow: 0 3px 2px #777;
+	-moz-box-shadow: 0 3px 2px #777;
+	box-shadow: 0 3px 2px #777;
+
+	cursor: pointer;
+
+	background-image: linear-gradient(#b42020,#5c1212);
+}
+
+.go-back:active {
+	transform: translateY(4px);
+	box-shadow: none;
+}
+
+.go-back a {
+	position:  absolute;
+	top:25%;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	color: white;
+	text-shadow: 1px 1px rgba(0,0,0,0.2);
+	text-decoration: none;
+}
