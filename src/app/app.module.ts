@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { GameComponent } from './game/game.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './menu/menu.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MenuComponent } from './menu/menu.component';
     AboutComponent,
     GameComponent,
     MenuComponent,
+    ScoreboardComponent,
   ],
   imports: [
     BrowserModule,

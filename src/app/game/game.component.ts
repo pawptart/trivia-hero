@@ -20,6 +20,7 @@ export class GameComponent implements OnInit {
   currentQuestion: any;
   currentQuestionIndex: number;
   lockAnswers: boolean;
+  gameScore: number;
 
   constructor(
     public gameService: GameService,
@@ -30,6 +31,7 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.retrieveParams();
     this.startGame(this.amount, this.categoryId, this.difficulty, this.type);
+    this.gameScore = 0;
   }
 
   retrieveParams() {
@@ -62,6 +64,8 @@ export class GameComponent implements OnInit {
 
       if (this.currentQuestion.possible_answers[index].answer !== this.currentQuestion.correct_answer) {
         this.currentQuestion.possible_answers[index].state = false;
+      } else {
+        this.gameScore += 1
       }
       
       this.currentQuestion.possible_answers[correctIndex].state = true;
@@ -84,12 +88,13 @@ export class GameComponent implements OnInit {
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex == this.questionList.results.length) {
       this.endGame();
+    } else {
+      this.currentQuestion = this.questionList.results[this.currentQuestionIndex];
+      this.lockAnswers = false;
     }
-    this.currentQuestion = this.questionList.results[this.currentQuestionIndex];
-    this.lockAnswers = false;
   }
 
   endGame() {
-    console.log("the game is over!");
+    console.log("the game is over!", this.gameScore);
   }
 }
