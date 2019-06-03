@@ -25,7 +25,7 @@
 }
 
 .score-percentage {
-	font-size: 150px;
+	font-size: 20vw;
 	width: 75%;
 	margin: auto;
 	font-weight: bold;	
@@ -77,6 +77,8 @@
 	cursor: pointer;
 
 	background-image: linear-gradient(#b42020,#5c1212);
+	
+	min-height: 45px;
 }
 
 .go-back:active {

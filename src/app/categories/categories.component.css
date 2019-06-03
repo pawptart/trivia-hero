@@ -57,3 +57,9 @@ li:active {
 .back {
 	background-image: linear-gradient(#b42020,#5c1212);
 }
+
+@media only screen and (max-width: 650px) {
+	ul { 
+		grid-template-columns: 1fr 1fr;
+	}
+}

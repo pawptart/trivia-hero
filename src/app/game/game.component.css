@@ -62,3 +62,9 @@ li:active {
 .incorrect {
 	background-image: linear-gradient(#b42020,#5c1212);
 }
+
+@media only screen and (max-width: 800px) {
+	li {
+		min-height: 35px;
+	}
+}
