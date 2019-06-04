@@ -8,6 +8,12 @@ Trivia Hero is an open-source trivia game built around the [Open Trivia DB](http
 
 Trivia Hero is built with desktops in mind but is playable on mobile as well!
 
+## Play
+
+You can simply visit [this link](https://trivia-hero.herokuapp.com) to play a game of Trivia Hero!
+
+Alternatively, you can for this repo and run it on your machine, which will work exactly the same.
+
 ## Contribute
 
 There are 2 ways to contribute to Trivia Hero. **First (and easiest) is to contribute to [Open Trivia DB](https://opentdb.com/)** to help generate a database of accurate and interesting trivia questions for the app to pull from. 
