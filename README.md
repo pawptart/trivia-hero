@@ -1,27 +1,19 @@
-# TriviaHero
+# Trivia Hero
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+[![Angular](https://img.shields.io/badge/Angular-7.3.9-green.svg)](https://angular.io/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-Yes-green.svg)](https://angular.io/)
+[![GitHub issues](https://img.shields.io/github/issues/pawptart/trivia-hero.svg)](https://GitHub.com/pawptart/trivia-hero/issues/)
 
-## Development server
+Trivia Hero is an open-source trivia game built around the [Open Trivia DB](https://opentdb.com/). You can play a simple trivia game with customizable parameters across a variety of different categories.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Trivia Hero is built with desktops in mind but is playable on mobile as well!
 
-## Code scaffolding
+## Contribute
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+There are 2 ways to contribute to Trivia Hero. **First (and easiest) is to contribute to [Open Trivia DB](https://opentdb.com/)** to help generate a database of accurate and interesting trivia questions for the app to pull from. 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Secondly, **if you want to contribute code**:
+1. Fork the repo
+2. Install [Angular](https://angular.io), if you haven't done so already 
+3. Submit a PR
+4. If accepted, the PR will be merged and automatically pushed to the production environment on Heroku.
